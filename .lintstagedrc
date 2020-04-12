@@ -1,7 +1,7 @@
 {
   "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "git add",
+      "git add"
   ],
   "*.{json,css,md}": [
       "prettier",
