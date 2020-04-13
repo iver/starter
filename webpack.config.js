@@ -2,16 +2,22 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    sourceMapFilename: 'bundle.map',
   },
+  devtool: '#source-map',
   module: {
     rules: [
       {
@@ -30,10 +36,11 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              sourceMap: true,
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+              sourceMap: devMode,
               importLoaders: 1,
-              localIdentName: '[local]___[hash:base64:5]',
             },
           },
           'sass-loader',
@@ -51,6 +58,7 @@ module.exports = {
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
+    new ManifestPlugin(),
   ],
   devServer: {
     hot: true,
