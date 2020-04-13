@@ -31,9 +31,7 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.tsx', 'ts'] }],
     'react/jsx-no-comment-textnodes': 'error',
     'react/no-array-index-key': 'error',
-    'react/require-default-props': ['error', {
-      forbidDefaultForRequired: true,
-    }],
+    'react/require-default-props': ['error', { forbidDefaultForRequired: true }],
     'react/prefer-stateless-function': [0, { ignorePureComponents: true }],
     'react/no-unused-prop-types': 1,
     'react/jsx-closing-tag-location': 'error',
@@ -43,6 +41,7 @@ module.exports = {
       checkContextTypes: true,
       checkChildContextTypes: true,
     }],
+    'react/jsx-fragments': [1, 'element'],
     'react/jsx-handler-names': ['off', {
       eventHandlerPrefix: 'handle',
       eventHandlerPropPrefix: 'on',
